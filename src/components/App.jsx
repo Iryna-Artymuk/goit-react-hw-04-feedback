@@ -8,7 +8,7 @@ const iniyState = {
   neutral: 0,
   bad: 0,
 };
-const AddPointReduser = (prevState, actions) => {
+const AddPointReducer = (prevState, actions) => {
   // console.log(prevState);
   // console.log(actions);
   switch (actions.type) {
@@ -23,7 +23,7 @@ const AddPointReduser = (prevState, actions) => {
   }
 };
 export default function App() {
-  const [state, dispatch] = useReducer(AddPointReduser, iniyState);
+  const [state, dispatch] = useReducer(AddPointReducer, iniyState);
 
   const feedbackIsGiven = Object.values(state).some(item => item > 0);
 
@@ -34,9 +34,6 @@ export default function App() {
           addGood={() => dispatch({ type: 'good', payload: 1 })}
           addBad={() => dispatch({ type: 'bad', payload: 1 })}
           addNeutral={() => dispatch({ type: 'neutral', payload: 1 })}
-          good={state.good}
-          neutral={state.neutral}
-          bad={state.bad}
         />
       </Section>
 
