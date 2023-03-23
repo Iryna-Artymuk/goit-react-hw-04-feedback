@@ -7,33 +7,31 @@ export default function Feedback({ addGood, addBad, addNeutral }) {
   const [rating, setRating] = useState('');
 
   const handelChange = event => setRating(event.currentTarget.value);
+  // const reset = () => setRating('');
+  function handelSubmit(event) {
+    event.preventDefault();
+
+    const inputs = Array.from(event.target.elements);
+
+    const chekedInput = inputs.find(input => input.checked);
+
+    switch (chekedInput.value) {
+      case 'good':
+        return addGood();
+
+      case 'bad':
+        return addBad();
+      case 'neutral':
+        return addNeutral();
+      default:
+        return;
+    }
+  }
 
   return (
     <div className={css.ratingContainer}>
       <div className={css.rating}>
-        <form
-          className={css.ratingForm}
-          onSubmit={event => {
-            event.preventDefault();
-
-            const inputs = Array.from(event.target.elements);
-
-            const chekedInput = inputs.find(input => input.checked);
-
-            switch (chekedInput.value) {
-              case 'good':
-                return addGood();
-
-              case 'bad':
-                return addBad();
-              case 'neutral':
-                return addNeutral();
-              default:
-                return;
-            }
-            // setRating('');
-          }}
-        >
+        <form className={css.ratingForm} onSubmit={handelSubmit}>
           <div className={css.inputBox}>
             <label>
               <input
