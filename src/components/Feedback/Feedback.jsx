@@ -17,15 +17,18 @@ export default function Feedback({ addGood, addBad, addNeutral }) {
 
     switch (chekedInput.value) {
       case 'good':
-        return addGood();
-
+        addGood();
+        break;
       case 'bad':
-        return addBad();
+        addBad();
+        break;
       case 'neutral':
-        return addNeutral();
+        addNeutral();
+        break;
       default:
         return;
     }
+    setRating('');
   }
 
   return (
